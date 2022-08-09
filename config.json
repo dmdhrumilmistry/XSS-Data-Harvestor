@@ -1,0 +1,6 @@
+{
+    "FLASK_ENV": "production",
+    "SECRET_KEY": "S0M3T#1N9-R4ND0M-5Tr1N9",
+    "SQLALCHEMY_TRACK_MODIFICATIONS": false,
+    "SQLALCHEMY_DATABASE_URI": "sqlite:///db.sqlite3"
+  }
