@@ -14,5 +14,12 @@ class HackedData(db.Model):
         self.ip = ip
         self.data = data
 
+    def jsonify(self):
+        return {
+            'id':self.id,
+            'ip':self.ip,
+            'data':self.data,
+        }
+
     def __str__(self) -> str:
         return f'{self.id}-{self.ip}-{self.data}'

