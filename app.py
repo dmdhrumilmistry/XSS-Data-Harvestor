@@ -29,26 +29,38 @@ def home():
     })
 
 
-@app.route('/api/hacked', methods=['POST'])
+@app.route('/api/hacked', methods=['POST', 'GET'])
 def store_hacked_data():
-    res = {'message': 'json data needed'}
+    res = {'message': 'data required'}
     res_code = 400
 
-    # check whether if POST request has json data
-    if request.is_json:
-        ip = request.remote_addr
-        data = request.get_json().get('data', None)
+    # get remote ip
+    ip = request.remote_addr
 
-        # extract and commit json data to database
-        if data:
-            new_hacked_data = HackedData(
-                ip=ip,
-                data=data
-            )
-            db.session.add(new_hacked_data)
-            db.session.commit()
-            res = {'message': 'success'}
-            res_code = 200
+    # check whether if POST request has json data
+    if request.method == 'POST':
+        if request.is_json:
+            data = request.get_json().get('data', None)
+        else:
+            data = request.args.get('data', None)
+
+    elif request.method == 'GET':
+        data = request.args.get('data', None)
+
+    else:
+        res = {'message':'send data using GET, POST method in json format or in url as data parameter'}
+
+    # extract and commit json data to database
+    if data:
+        new_hacked_data = HackedData(
+            ip=ip,
+            data=data
+        )
+        db.session.add(new_hacked_data)
+        db.session.commit()
+        res = {'message': 'success'}
+        res_code = 200
+
     return jsonify(res), res_code
 
 @app.route('/api/get_hacked_data', methods=['GET'])
