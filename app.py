@@ -22,7 +22,7 @@ def configure_app():
 @app.route('/api')
 def home():
     return jsonify({
-        'project': 'XSS-Session-Hijacker',
+        'project': 'XSS-Data-Harvestor',
         'writtenBy': 'dmdhrumilmistry',
         'github': 'https://github.com/dmdhrumilmistry',
         'website': 'https://dmdhrumilmistry.github.io',

@@ -1,6 +1,8 @@
-# XSS-Cookie-Hijacker
+# XSS-Data-Harvestor
 
-Hijack Cookies by exploting XSS vulnerable applications or use it to dump and retreive data over the internet
+Harvest data from XSS vulnerabilites to XSS-Data-Harvestor API
+
+Example: Hijack Cookies by exploting XSS vulnerable applications or use it to dump and retreive data over the internet using ssh tunelling or on hosted platform.
 
 ## Installation
 
@@ -25,3 +27,11 @@ Hijack Cookies by exploting XSS vulnerable applications or use it to dump and re
   ```bash
   gunicorn wsgi:app --bind 0.0.0.0:5000
   ```
+
+## Endpoints
+
+|       Endpoint       |  Methods  | Description                                                        |
+| :------------------: | :-------: | :----------------------------------------------------------------- |
+|        /api/         |    \*     | API home                                                           |
+|     /api/hacked      | GET, POST | accepts hacked data in json/form data format or from url parameter |
+| /api/get_hacked_data |    GET    | returns hacked data in json format                                 |
