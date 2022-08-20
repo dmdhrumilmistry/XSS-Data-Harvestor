@@ -2,7 +2,7 @@
 
 Harvest data from XSS vulnerabilites to XSS-Data-Harvestor API
 
-Example: Hijack Cookies by exploting XSS vulnerable applications or use it to dump and retreive data over the internet using ssh tunelling or on hosted platform.
+Example: Hijack Cookies by exploting XSS vulnerable applications to dump and retreive data over the internet using ssh tunelling or on hosted platform.
 
 ## Installation
 
